@@ -135,6 +135,14 @@ const data = [
   },
 ];
 
+// const title = book.title;
+// title;
+
+// const author = book.author;
+// author;
+
+//
+
 function getBooks() {
   return data;
 }
@@ -171,3 +179,81 @@ newGenres;
 
 const updatedBook = { ...book, moviePublication: "2001-12-19", pages: 1210 };
 console.log(updatedBook);
+
+//lesson 25
+
+const books = getBooks();
+books;
+
+const x = [1, 2, 3, 4, 5].map((el) => el * 2);
+console.log(x);
+
+const titles = books.map((book) => book.title);
+titles;
+
+const essentialData = books.map((book) => ({
+  title: book.title,
+  author: book.author,
+}));
+
+essentialData;
+
+//lesson 26
+const longBooks = books
+  .filter((book) => book.pages > 500)
+  .filter((book) => book.hasMovieAdaptation);
+longBooks;
+
+const adventureBooks = books
+  .filter((books) => books.genres.includes("adventure"))
+  .map((book) => book.title);
+adventureBooks;
+
+//lesson 27
+const pagesAllBooks = books.reduce((acc, book) => acc + book.pages, 0);
+pagesAllBooks;
+
+//lesson 28
+const arr = [3, 7, 1, 9, 6];
+const sorted = arr.slice().sort((a, b) => b - a);
+sorted;
+arr;
+
+const sortedPages = books.slice().sort((a, b) => b.pages - a.pages);
+sortedPages;
+
+//lesson 29
+const newBook = {
+  id: 6,
+  title: "Harry Potter and the Chamber of Secrets",
+  author: "J. K. Rowling",
+};
+
+const booksAfterAdd = [...books, newBook];
+booksAfterAdd;
+
+const booksAfterDelete = booksAfterAdd.filter((book) => book.id !== 3);
+booksAfterDelete;
+
+const booksAfterUpdate = booksAfterDelete.map((book) =>
+  book.id === 1 ? { ...book, pages: 1222 } : book
+);
+booksAfterUpdate;
+
+//lesson 30 async promises
+// fetch("https://jsonplaceholder.typicode.com/todos")
+//   .then((res) => res.json())
+//   .then((data) => console.log(data));
+
+// console.log("Azka");
+
+//lesson 31 async await
+async function getTodos() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+  const data = await res.json();
+  console.log(data);
+}
+
+getTodos();
+
+console.log("Azka1");
